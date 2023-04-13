@@ -15,19 +15,28 @@
 package pict
 
 import (
+	"bufio"
 	"bytes"
 	"io"
+	"strings"
 )
+
+// Case represents a PICT case.
+type Case = []string
 
 // Parser represents a PICT parser.
 type Parser struct {
 	reader io.Reader
+	params []string
+	cases  [][]string
 }
 
 // NewParserWithReader returns a new PICT parser with the specified reader.
 func NewParserWithReader(msgReader io.Reader) *Parser {
 	Parser := &Parser{
 		reader: msgReader,
+		params: []string{},
+		cases:  [][]string{},
 	}
 	return Parser
 }
@@ -42,6 +51,30 @@ func NewParserWithString(msgString string) *Parser {
 	return NewParserWithReader(bytes.NewBuffer([]byte(msgString)))
 }
 
+// Params returns the parameters.
+func (parser *Parser) Params() []string {
+	return parser.params
+}
+
 func (parser *Parser) Parse() error {
+	reader := bufio.NewReader(parser.reader)
+
+	paramLine, _, err := reader.ReadLine()
+	if err != nil {
+		return err
+	}
+	parser.params = strings.Split(string(paramLine), " ")
+
+	for {
+		caseLine, _, err := reader.ReadLine()
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+		parser.cases = append(parser.cases, strings.Split(string(caseLine), " "))
+	}
+
 	return nil
 }
