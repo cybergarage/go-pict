@@ -27,9 +27,6 @@ TEST_SRC_ROOT=test
 TEST_PKG=\
 	${MODULE_ROOT}/${TEST_SRC_ROOT}/...
 
-%.pict : %.mod
-	pict $< > $@
-
 .PHONY: test format vet lint clean docker
 
 all: test
@@ -46,6 +43,9 @@ vet: format
 
 lint: format
 	golangci-lint run ${PKG_SRC_ROOT}/... ${TEST_SRC_ROOT}
+
+%.pict : %.mod
+	pict $< > $@
 
 picts := $(patsubst %.mod,%.pict,$(wildcard test/picts/*.mod))
 
