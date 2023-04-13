@@ -35,6 +35,10 @@ func TestParser(t *testing.T) {
 				return
 			}
 			for _, pictCase := range parser.Cases() {
+				if len(params) != len(pictCase) {
+					t.Errorf("%d != %d", len(params), len(pictCase))
+					return
+				}
 				if len(pictCase) <= 1 {
 					t.Error("No pictCase cases")
 					return
