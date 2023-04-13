@@ -25,7 +25,7 @@ func TestParser(t *testing.T) {
 	for name, pictBytes := range picts.EmbedPicts {
 		t.Run(name, func(t *testing.T) {
 			parser := pict.NewParserWithBytes(pictBytes)
-			err := parser.Parser()
+			err := parser.Parse()
 			if err != nil {
 				t.Error(err)
 			}
