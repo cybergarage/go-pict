@@ -81,7 +81,7 @@ func (parser *Parser) Parse() error {
 	if err != nil {
 		return err
 	}
-	parser.params = strings.Split(string(paramLine), " ")
+	parser.params = strings.Split(string(paramLine), "\t")
 
 	for {
 		caseLine, _, err := reader.ReadLine()
@@ -91,7 +91,7 @@ func (parser *Parser) Parse() error {
 			}
 			return err
 		}
-		parser.cases = append(parser.cases, strings.Split(string(caseLine), " "))
+		parser.cases = append(parser.cases, strings.Split(string(caseLine), "\t"))
 	}
 
 	return nil
