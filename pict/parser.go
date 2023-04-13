@@ -19,10 +19,12 @@ import (
 	"io"
 )
 
+// Parser represents a PICT parser.
 type Parser struct {
 	reader io.Reader
 }
 
+// NewParserWithReader returns a new PICT parser with the specified reader.
 func NewParserWithReader(msgReader io.Reader) *Parser {
 	Parser := &Parser{
 		reader: msgReader,
@@ -30,10 +32,16 @@ func NewParserWithReader(msgReader io.Reader) *Parser {
 	return Parser
 }
 
+// NewParserWithBytes returns a new PICT parser with the specified bytes.
 func NewParserWithBytes(msgBytes []byte) *Parser {
 	return NewParserWithReader(bytes.NewBuffer(msgBytes))
 }
 
-func (parser *Parser) Parser() error {
+// NewParserWithString returns a new PICT parser with the specified string.
+func NewParserWithString(msgString string) *Parser {
+	return NewParserWithReader(bytes.NewBuffer([]byte(msgString)))
+}
+
+func (parser *Parser) Parse() error {
 	return nil
 }
