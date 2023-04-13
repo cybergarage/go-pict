@@ -1,0 +1,44 @@
+run:
+  timeout: 10m
+  tests: false
+
+linters:
+  enable-all: true
+  disable:
+    - deadcode
+    - paralleltest
+    - testpackage
+    - gofumpt
+    - nlreturn
+    - varnamelen
+    - wsl
+    - funlen
+    - ireturn
+    - unconvert
+    - wrapcheck
+    - ifshort
+    - interfacer
+    - exhaustivestruct
+    - golint
+    - structcheck
+    - unused
+    - cyclop
+    - lll
+    - gomnd
+    - gochecknoglobals
+    - dupl
+    - unparam
+    - godox
+    - varcheck
+    - interfacebloat
+    - nolintlint
+    - nestif
+    - scopelint
+    - maligned
+    - nosnakecase
+
+linters-settings:
+  revive:
+    rules:
+      - name: unused-parameter
+        disabled: true
