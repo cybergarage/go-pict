@@ -4,4 +4,5 @@
 
 ## References
 
+- [Pairwise Testing | Combinatorial Test Case Generation](https://www.pairwise.org/)
 - [microsoft/pict: Pairwise Independent Combinatorial Tool](https://github.com/microsoft/pict)
