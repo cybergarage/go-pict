@@ -49,7 +49,10 @@ lint: format
 
 picts := $(patsubst %.mod,%.pict,$(wildcard test/picts/*.mod))
 
-test: lint $(picts)
+test/picts/embed.go : test/picts/embed.pl $(wildcard test/picts/*.pict)
+	perl $< > $@
+
+test: lint $(picts) test/picts/embed.go
 	go test -v -p 1 -cover -timeout 60s ${PKG} ${TEST_PKG}
 
 clean:
