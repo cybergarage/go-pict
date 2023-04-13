@@ -47,7 +47,7 @@ vet: format
 lint: format
 	golangci-lint run ${PKG_SRC_ROOT}/... ${TEST_SRC_ROOT}
 
-picts := $(patsubst %.mod,%.pict,$(wildcard test/*.mod))
+picts := $(patsubst %.mod,%.pict,$(wildcard test/picts/*.mod))
 
 test: lint $(picts)
 	go test -v -p 1 -cover -timeout 60s ${PKG} ${TEST_PKG}
