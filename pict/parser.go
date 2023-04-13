@@ -21,6 +21,9 @@ import (
 	"strings"
 )
 
+// Param represents a PICT parameter.
+type Param = string
+
 // Case represents a PICT case.
 type Case = []string
 
@@ -35,7 +38,7 @@ type Parser struct {
 func NewParserWithReader(msgReader io.Reader) *Parser {
 	Parser := &Parser{
 		reader: msgReader,
-		params: []string{},
+		params: []Param{},
 		cases:  []Case{},
 	}
 	return Parser
@@ -52,8 +55,13 @@ func NewParserWithString(msgString string) *Parser {
 }
 
 // Params returns the parameters.
-func (parser *Parser) Params() []string {
+func (parser *Parser) Params() []Param {
 	return parser.params
+}
+
+// Param returns the parameter at the specified index.
+func (parser *Parser) Param(n int) Param {
+	return parser.params[n]
 }
 
 // Cases returns the all cases.
