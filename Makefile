@@ -23,9 +23,12 @@ PKG_SRC_ROOT=${PKG_NAME}
 PKG=\
 	${MODULE_ROOT}/${PKG_SRC_ROOT}/...
 
-TEST_SRC_ROOT=${PKG_NAME}test
+TEST_SRC_ROOT=test
 TEST_PKG=\
 	${MODULE_ROOT}/${TEST_SRC_ROOT}/...
+
+%.pict : %.mod
+	pict $< > $@
 
 .PHONY: test format vet lint clean docker
 
@@ -33,6 +36,7 @@ all: test
 
 version:
 	@pushd ${PKG_SRC_ROOT} && ./version.gen > version.go && popd
+
 
 format:
 	gofmt -s -w ${PKG_SRC_ROOT} ${TEST_SRC_ROOT}
@@ -43,7 +47,9 @@ vet: format
 lint: format
 	golangci-lint run ${PKG_SRC_ROOT}/... ${TEST_SRC_ROOT}
 
-test: lint
+picts := $(patsubst %.mod,%.pict,$(wildcard test/*.mod))
+
+test: lint $(picts)
 	go test -v -p 1 -cover -timeout 60s ${PKG} ${TEST_PKG}
 
 clean:
