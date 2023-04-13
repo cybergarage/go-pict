@@ -36,7 +36,7 @@ func NewParserWithReader(msgReader io.Reader) *Parser {
 	Parser := &Parser{
 		reader: msgReader,
 		params: []string{},
-		cases:  [][]string{},
+		cases:  []Case{},
 	}
 	return Parser
 }
@@ -54,6 +54,11 @@ func NewParserWithString(msgString string) *Parser {
 // Params returns the parameters.
 func (parser *Parser) Params() []string {
 	return parser.params
+}
+
+// Cases returns the all cases.
+func (parser *Parser) Cases() []Case {
+	return parser.cases
 }
 
 func (parser *Parser) Parse() error {
