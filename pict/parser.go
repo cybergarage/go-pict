@@ -69,6 +69,11 @@ func (parser *Parser) Cases() []Case {
 	return parser.cases
 }
 
+// Case returns the case at the specified index.
+func (parser *Parser) Case(n int) Case {
+	return parser.cases[n]
+}
+
 func (parser *Parser) Parse() error {
 	reader := bufio.NewReader(parser.reader)
 
