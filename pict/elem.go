@@ -129,7 +129,7 @@ func (elem Elem) Cast(to any) (any, error) { // nolint: goerr113
 		}
 		return *v, nil
 	}
-	return nil, fmt.Errorf("%T is not supported", to)
+	return nil, fmt.Errorf("%T %w", to, ErrNotSupported)
 }
 
 // String returns the string representation of the element.
