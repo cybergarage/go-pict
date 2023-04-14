@@ -14,6 +14,11 @@
 
 package pict
 
+import (
+	"fmt"
+	"strconv"
+)
+
 // Elem represents a PICT element.
 type Elem string
 
@@ -24,6 +29,107 @@ func newElemsWith(strs []string) []Elem {
 		params[n] = Elem(v)
 	}
 	return params
+}
+
+// Cast casts the element to the specified type.
+func (elem Elem) Cast(to any) (any, error) { // nolint: goerr113
+	var err error
+	switch v := to.(type) {
+	case *string:
+		*v = string(elem)
+		return *v, nil
+	case []byte:
+		v = []byte(elem)
+		return v, nil
+	case *bool:
+		*v, err = strconv.ParseBool(string(elem))
+		return *v, err
+	case nil:
+		return nil, nil
+	case *int:
+		i, err := strconv.ParseInt(string(elem), 10, 64)
+		if err != nil {
+			return nil, err
+		}
+		*v = int(i)
+		return *v, nil
+	case *int8:
+		i, err := strconv.ParseInt(string(elem), 10, 8)
+		if err != nil {
+			return nil, err
+		}
+		*v = int8(i)
+		return *v, nil
+	case *int16:
+		i, err := strconv.ParseInt(string(elem), 10, 16)
+		if err != nil {
+			return nil, err
+		}
+		*v = int16(i)
+		return *v, nil
+	case *int32:
+		i, err := strconv.ParseInt(string(elem), 10, 32)
+		if err != nil {
+			return nil, err
+		}
+		*v = int32(i)
+		return *v, nil
+	case *int64:
+		i, err := strconv.ParseInt(string(elem), 10, 64)
+		if err != nil {
+			return nil, err
+		}
+		*v = int64(i)
+		return *v, nil
+	case *uint:
+		i, err := strconv.ParseUint(string(elem), 10, 64)
+		if err != nil {
+			return nil, err
+		}
+		*v = uint(i)
+		return *v, nil
+	case *uint8:
+		i, err := strconv.ParseUint(string(elem), 10, 8)
+		if err != nil {
+			return nil, err
+		}
+		*v = uint8(i)
+		return *v, nil
+	case *uint16:
+		i, err := strconv.ParseUint(string(elem), 10, 16)
+		if err != nil {
+			return nil, err
+		}
+		*v = uint16(i)
+		return *v, nil
+	case *uint32:
+		i, err := strconv.ParseUint(string(elem), 10, 32)
+		if err != nil {
+			return nil, err
+		}
+		*v = uint32(i)
+		return *v, nil
+	case *uint64:
+		*v, err = strconv.ParseUint(string(elem), 10, 64)
+		if err != nil {
+			return nil, err
+		}
+		return *v, nil
+	case *float32:
+		f, err := strconv.ParseFloat(string(elem), 32)
+		if err != nil {
+			return nil, err
+		}
+		*v = float32(f)
+		return *v, nil
+	case *float64:
+		*v, err = strconv.ParseFloat(string(elem), 64)
+		if err != nil {
+			return nil, err
+		}
+		return *v, nil
+	}
+	return nil, fmt.Errorf("%T is not supported", to)
 }
 
 // String returns the string representation of the element.
