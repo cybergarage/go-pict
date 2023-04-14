@@ -21,16 +21,13 @@ import (
 	"strings"
 )
 
-// Param represents a PICT parameter.
-type Param = string
-
 // Case represents a PICT case.
 type Case = []string
 
 // Parser represents a PICT parser.
 type Parser struct {
 	reader io.Reader
-	params []string
+	params []Param
 	cases  [][]string
 }
 
@@ -81,7 +78,7 @@ func (parser *Parser) Parse() error {
 	if err != nil {
 		return err
 	}
-	parser.params = strings.Split(string(paramLine), "\t")
+	parser.params = NewParams(strings.Split(string(paramLine), "\t"))
 
 	for {
 		caseLine, _, err := reader.ReadLine()
