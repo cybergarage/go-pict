@@ -132,6 +132,60 @@ func (elem Elem) Cast(to any) (any, error) { // nolint: goerr113
 	return nil, fmt.Errorf("%T %w", to, ErrNotSupported)
 }
 
+// Cast casts the element to the specified type.
+func (elem Elem) CastType(t string) (any, error) { // nolint: goerr113
+	switch t {
+	case "string":
+		var v string
+		return elem.Cast(&v)
+	case "bytes":
+		var v []byte
+		return elem.Cast(&v)
+	case "bool":
+		var v bool
+		return elem.Cast(&v)
+	case "nil":
+		return nil, nil
+	case "int":
+		var v int
+		return elem.Cast(&v)
+	case "int8":
+		var v int8
+		return elem.Cast(&v)
+	case "int16":
+		var v int16
+		return elem.Cast(&v)
+	case "int32":
+		var v int32
+		return elem.Cast(&v)
+	case "int64":
+		var v int64
+		return elem.Cast(&v)
+	case "uint":
+		var v uint
+		return elem.Cast(&v)
+	case "uint8":
+		var v uint8
+		return elem.Cast(&v)
+	case "uint16":
+		var v uint16
+		return elem.Cast(&v)
+	case "uint32":
+		var v uint32
+		return elem.Cast(&v)
+	case "uint64":
+		var v uint64
+		return elem.Cast(&v)
+	case "float32":
+		var v float32
+		return elem.Cast(&v)
+	case "float64":
+		var v float64
+		return elem.Cast(&v)
+	}
+	return nil, fmt.Errorf("%s %w", t, ErrNotSupported)
+}
+
 // String returns the string representation of the element.
 func (elem Elem) String() string {
 	return string(elem)
