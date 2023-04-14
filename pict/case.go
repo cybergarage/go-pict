@@ -19,5 +19,5 @@ type Case []Elem
 
 // newCaseWith returns a new PICT parameter with the specified string.
 func newCaseWith(strs []string) Case {
-	return NewElemsWith(strs)
+	return newElemsWith(strs)
 }
