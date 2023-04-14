@@ -15,13 +15,9 @@
 package pict
 
 // Case represents a PICT case.
-type Case []string
+type Case []Elem
 
 // NewCaseWith returns a new PICT parameter with the specified string.
 func NewCaseWith(strs []string) Case {
-	cases := make(Case, len(strs))
-	for n, v := range strs {
-		cases[n] = v
-	}
-	return cases
+	return NewElemsWith(strs)
 }
