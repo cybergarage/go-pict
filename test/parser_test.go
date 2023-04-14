@@ -15,6 +15,7 @@
 package picttest
 
 import (
+	_ "embed"
 	"testing"
 
 	"github.com/cybergarage/go-pict/pict"
@@ -28,6 +29,7 @@ func TestParser(t *testing.T) {
 			err := parser.Parse()
 			if err != nil {
 				t.Error(err)
+				return
 			}
 			params := parser.Params()
 			if len(params) <= 1 {
@@ -46,5 +48,27 @@ func TestParser(t *testing.T) {
 				}
 			}
 		})
+	}
+}
+
+//go:embed picts/golang_types.pict
+var goLangTypes []byte
+
+func TestCast(t *testing.T) {
+	parser := pict.NewParserWithBytes(goLangTypes)
+	err := parser.Parse()
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	params := parser.Params()
+	for _, pictCase := range parser.Cases() {
+		for n, pictElem := range pictCase {
+			param := params[n]
+			_, err := pictElem.CastType(param.String())
+			if err != nil {
+				t.Error(err)
+			}
+		}
 	}
 }
