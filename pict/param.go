@@ -25,3 +25,8 @@ func newParamsWith(strs []string) []Param {
 	}
 	return params
 }
+
+// String returns the string representation of the parameter.
+func (param Param) String() string {
+	return string(param)
+}
