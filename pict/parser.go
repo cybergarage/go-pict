@@ -21,14 +21,11 @@ import (
 	"strings"
 )
 
-// Case represents a PICT case.
-type Case = []string
-
 // Parser represents a PICT parser.
 type Parser struct {
 	reader io.Reader
 	params []Param
-	cases  [][]string
+	cases  []Case
 }
 
 // NewParserWithReader returns a new PICT parser with the specified reader.
