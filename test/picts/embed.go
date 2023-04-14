@@ -18,8 +18,8 @@ import (
 	_ "embed"
 )
 
-var EmbedPicts = map[string][]byte {
-	"Test": test,
+var EmbedPicts = map[string][]byte{
+	"Test":        test,
 	"GolangTypes": golangTypes,
 }
 
@@ -28,4 +28,3 @@ var test []byte
 
 //go:embed golang_types.pict
 var golangTypes []byte
-

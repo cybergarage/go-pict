@@ -38,8 +38,8 @@ func (elem Elem) Cast(to any) (any, error) { // nolint: goerr113
 	case *string:
 		*v = string(elem)
 		return *v, nil
-	case []byte:
-		v = []byte(elem)
+	case *[]byte:
+		*v = []byte(elem)
 		return v, nil
 	case *bool:
 		*v, err = strconv.ParseBool(string(elem))
