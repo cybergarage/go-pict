@@ -17,13 +17,8 @@ package pict
 // Elem represents a PICT element.
 type Elem string
 
-// NewElemWith returns a new PICT element with the specified string.
-func NewElemWith(str string) Elem {
-	return Elem(str)
-}
-
-// NewElemsWith returns a new PICT element with the specified string.
-func NewElemsWith(strs []string) []Elem {
+// newElemsWith returns a new PICT element with the specified string.
+func newElemsWith(strs []string) []Elem {
 	params := make([]Elem, len(strs))
 	for n, v := range strs {
 		params[n] = Elem(v)
