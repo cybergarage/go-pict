@@ -85,7 +85,7 @@ func (parser *Parser) Parse() error {
 			}
 			return err
 		}
-		parser.cases = append(parser.cases, NewCaseWith(strings.Split(string(caseLine), "\t")))
+		parser.cases = append(parser.cases, newCaseWith(strings.Split(string(caseLine), "\t")))
 	}
 
 	return nil

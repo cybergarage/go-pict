@@ -17,7 +17,7 @@ package pict
 // Case represents a PICT case.
 type Case []Elem
 
-// NewCaseWith returns a new PICT parameter with the specified string.
-func NewCaseWith(strs []string) Case {
+// newCaseWith returns a new PICT parameter with the specified string.
+func newCaseWith(strs []string) Case {
 	return NewElemsWith(strs)
 }
