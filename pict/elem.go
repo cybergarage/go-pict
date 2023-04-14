@@ -25,3 +25,8 @@ func newElemsWith(strs []string) []Elem {
 	}
 	return params
 }
+
+// String returns the string representation of the element.
+func (elem Elem) String() string {
+	return string(elem)
+}
