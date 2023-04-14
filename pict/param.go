@@ -17,13 +17,13 @@ package pict
 // Param represents a PICT parameter.
 type Param string
 
-// NewParam returns a new PICT parameter with the specified string.
-func NewParam(str string) Param {
+// NewParamWith returns a new PICT parameter with the specified string.
+func NewParamWith(str string) Param {
 	return Param(str)
 }
 
-// NewParams returns a new PICT parameter with the specified string.
-func NewParams(strs []string) []Param {
+// NewParamsWith returns a new PICT parameter with the specified string.
+func NewParamsWith(strs []string) []Param {
 	params := make([]Param, len(strs))
 	for n, v := range strs {
 		params[n] = Param(v)

@@ -75,7 +75,7 @@ func (parser *Parser) Parse() error {
 	if err != nil {
 		return err
 	}
-	parser.params = NewParams(strings.Split(string(paramLine), "\t"))
+	parser.params = NewParamsWith(strings.Split(string(paramLine), "\t"))
 
 	for {
 		caseLine, _, err := reader.ReadLine()
