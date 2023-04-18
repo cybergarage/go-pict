@@ -18,4 +18,5 @@ import (
 	"errors"
 )
 
+var ErrNotEqual = errors.New("not equal")
 var ErrNotSupported = errors.New("not supported")
