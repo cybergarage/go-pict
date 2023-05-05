@@ -137,51 +137,96 @@ func (elem Elem) CastType(t string) (any, error) { // nolint: goerr113
 	switch t {
 	case "string":
 		var v string
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "bytes":
 		var v []byte
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "bool":
 		var v bool
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "nil":
 		return nil, nil
 	case "int":
 		var v int
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "int8":
 		var v int8
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "int16":
 		var v int16
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "int32":
 		var v int32
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "int64":
 		var v int64
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "uint":
 		var v uint
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "uint8":
 		var v uint8
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "uint16":
 		var v uint16
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "uint32":
 		var v uint32
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "uint64":
 		var v uint64
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "float32":
 		var v float32
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case "float64":
 		var v float64
-		return elem.Cast(&v)
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	}
 	return nil, fmt.Errorf("%s %w", t, ErrNotSupported)
 }
