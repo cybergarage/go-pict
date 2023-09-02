@@ -45,7 +45,7 @@ func (elem Elem) Cast(to any) (any, error) { // nolint: goerr113
 		*v, err = strconv.ParseBool(string(elem))
 		return *v, err
 	case nil:
-		return nil, nil
+		return nil, nil // nolint: nilnil
 	case *int:
 		i, err := strconv.ParseInt(string(elem), 10, 64)
 		if err != nil {
@@ -154,7 +154,7 @@ func (elem Elem) CastType(t string) (any, error) { // nolint: goerr113, gocognit
 		}
 		return v, nil
 	case "nil":
-		return nil, nil
+		return nil, nil // nolint: nilnil
 	case "int":
 		var v int
 		if _, err := elem.Cast(&v); err != nil {
