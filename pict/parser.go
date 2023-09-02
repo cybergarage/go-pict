@@ -45,7 +45,7 @@ func NewParserWithBytes(msgBytes []byte) *Parser {
 
 // NewParserWithString returns a new PICT parser with the specified string.
 func NewParserWithString(msgString string) *Parser {
-	return NewParserWithReader(bytes.NewBuffer([]byte(msgString)))
+	return NewParserWithReader(bytes.NewBufferString(msgString))
 }
 
 // Params returns the parameters.
