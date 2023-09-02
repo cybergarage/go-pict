@@ -133,7 +133,7 @@ func (elem Elem) Cast(to any) (any, error) { // nolint: goerr113
 }
 
 // Cast casts the element to the specified type.
-func (elem Elem) CastType(t string) (any, error) { // nolint: goerr113
+func (elem Elem) CastType(t string) (any, error) { // nolint: goerr113, gocognit, gocyclo
 	switch t {
 	case "string":
 		var v string
