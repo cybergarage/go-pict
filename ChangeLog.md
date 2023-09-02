@@ -1,5 +1,9 @@
 # Changelog
 
+# v1.0.0 (2023-09-02)
+- Fix interface
+- Fix compile warnings
+
 # v0.8.2 (2023-05-05)
 - Fix pict.CastType() not to return *[]uint8 values for []byte elements
 
