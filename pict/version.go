@@ -15,5 +15,5 @@
 package pict
 
 const (
-	Version = "v0.8.1"
+	Version = "v1.0.1"
 )
