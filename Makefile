@@ -27,15 +27,16 @@ TEST_SRC_ROOT=test
 TEST_PKG=\
 	${MODULE_ROOT}/${TEST_SRC_ROOT}/...
 
-.PHONY: test format vet lint clean docker
+.PHONY: version test format vet lint clean docker
+.IGNORE: lint
 
 all: test
 
 version:
 	@pushd ${PKG_SRC_ROOT} && ./version.gen > version.go && popd
+	-git commit ${PKG_SRC_ROOT}/version.go -m "Update version"
 
-
-format:
+format: version
 	gofmt -s -w ${PKG_SRC_ROOT} ${TEST_SRC_ROOT}
 
 vet: format
