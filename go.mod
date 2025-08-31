@@ -1,3 +1,3 @@
 module github.com/cybergarage/go-pict
 
-go 1.22
+go 1.25
