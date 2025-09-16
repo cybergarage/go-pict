@@ -15,7 +15,6 @@
 package pict_test
 
 import (
-	_ "embed"
 	"fmt"
 
 	"github.com/cybergarage/go-pict/pict"
