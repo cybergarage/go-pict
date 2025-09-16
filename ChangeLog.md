@@ -1,5 +1,10 @@
 # Changelog
 
+# v1.0.1 (2025-09-16)
+- Updated to Go 1.25
+- Fixed compile warnings
+- Added example tests
+
 # v1.0.0 (2023-09-02)
 - Fix interface
 - Fix compile warnings
