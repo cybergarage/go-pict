@@ -19,7 +19,7 @@ import (
 	"testing"
 
 	"github.com/cybergarage/go-pict/pict"
-	"github.com/cybergarage/go-pict/test/picts"
+	"github.com/cybergarage/go-pict/picttest/picts"
 )
 
 func TestParser(t *testing.T) {
