@@ -35,3 +35,8 @@ const (
 	TypeInt64   Type = "int64"
 	TypeNil     Type = "nil"
 )
+
+// String returns the string representation of the type.
+func (t Type) String() string {
+	return string(t)
+}

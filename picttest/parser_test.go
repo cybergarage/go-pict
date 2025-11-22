@@ -65,10 +65,10 @@ func TestCast(t *testing.T) {
 	for _, pictCase := range parser.Cases() {
 		for n, pictElem := range pictCase {
 			param := params[n]
-			typ := pict.Type(param.String())
-			elem, err := pictElem.CastType(typ)
+			toType := pict.Type(param.String())
+			_, err := pictElem.CastType(toType)
 			if err != nil {
-				t.Errorf("%v: %s", elem, err.Error())
+				t.Errorf("%s (string) -> %v: %s", pictElem, toType.String(), err.Error())
 			}
 		}
 	}
