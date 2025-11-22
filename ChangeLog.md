@@ -1,5 +1,8 @@
 # Changelog
 
+# v1.0.2 (2025-11-23)
+- refactor: replace manual type casting with go-safecast library
+
 # v1.0.1 (2025-09-16)
 - Updated to Go 1.25
 - Fixed compile warnings
