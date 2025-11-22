@@ -16,7 +16,8 @@ package pict
 
 import (
 	"fmt"
-	"strconv"
+
+	"github.com/cybergarage/go-safecast/safecast"
 )
 
 // Elem represents a PICT element.
@@ -32,196 +33,104 @@ func newElemsWith(strs []string) []Elem {
 }
 
 // Cast casts the element to the specified type.
-func (elem Elem) Cast(to any) (any, error) { // nolint: goerr113
-	var err error
-	switch v := to.(type) {
-	case *string:
-		*v = string(elem)
-		return *v, nil
-	case *[]byte:
-		*v = []byte(elem)
-		return *v, nil
-	case *bool:
-		*v, err = strconv.ParseBool(string(elem))
-		return *v, err
-	case nil:
-		return nil, nil // nolint: nilnil
-	case *int:
-		i, err := strconv.ParseInt(string(elem), 10, 64)
-		if err != nil {
-			return nil, err
-		}
-		*v = int(i)
-		return *v, nil
-	case *int8:
-		i, err := strconv.ParseInt(string(elem), 10, 8)
-		if err != nil {
-			return nil, err
-		}
-		*v = int8(i)
-		return *v, nil
-	case *int16:
-		i, err := strconv.ParseInt(string(elem), 10, 16)
-		if err != nil {
-			return nil, err
-		}
-		*v = int16(i)
-		return *v, nil
-	case *int32:
-		i, err := strconv.ParseInt(string(elem), 10, 32)
-		if err != nil {
-			return nil, err
-		}
-		*v = int32(i)
-		return *v, nil
-	case *int64:
-		i, err := strconv.ParseInt(string(elem), 10, 64)
-		if err != nil {
-			return nil, err
-		}
-		*v = int64(i)
-		return *v, nil
-	case *uint:
-		i, err := strconv.ParseUint(string(elem), 10, 64)
-		if err != nil {
-			return nil, err
-		}
-		*v = uint(i)
-		return *v, nil
-	case *uint8:
-		i, err := strconv.ParseUint(string(elem), 10, 8)
-		if err != nil {
-			return nil, err
-		}
-		*v = uint8(i)
-		return *v, nil
-	case *uint16:
-		i, err := strconv.ParseUint(string(elem), 10, 16)
-		if err != nil {
-			return nil, err
-		}
-		*v = uint16(i)
-		return *v, nil
-	case *uint32:
-		i, err := strconv.ParseUint(string(elem), 10, 32)
-		if err != nil {
-			return nil, err
-		}
-		*v = uint32(i)
-		return *v, nil
-	case *uint64:
-		*v, err = strconv.ParseUint(string(elem), 10, 64)
-		if err != nil {
-			return nil, err
-		}
-		return *v, nil
-	case *float32:
-		f, err := strconv.ParseFloat(string(elem), 32)
-		if err != nil {
-			return nil, err
-		}
-		*v = float32(f)
-		return *v, nil
-	case *float64:
-		*v, err = strconv.ParseFloat(string(elem), 64)
-		if err != nil {
-			return nil, err
-		}
-		return *v, nil
+func (elem Elem) Cast(to any) (any, error) {
+	err := safecast.To(string(elem), to)
+	if err != nil {
+		return nil, err
 	}
-	return nil, fmt.Errorf("%T %w", to, ErrNotSupported)
+	return to, nil
 }
 
 // Cast casts the element to the specified type.
-func (elem Elem) CastType(t string) (any, error) { // nolint: goerr113, gocognit, gocyclo
+func (elem Elem) CastType(t Type) (any, error) { // nolint: gocognit, gocyclo
 	switch t {
-	case "string":
+	case TypeString:
 		var v string
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "bytes":
+	case TypeBytes:
 		var v []byte
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "bool":
+	case TypeBool:
 		var v bool
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "nil":
+	case TypeNil:
 		return nil, nil // nolint: nilnil
-	case "int":
+	case TypeInt:
 		var v int
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "int8":
+	case TypeInt8:
 		var v int8
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "int16":
+	case TypeInt16:
 		var v int16
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "int32":
+	case TypeInt32:
 		var v int32
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "int64":
+	case TypeInt64:
 		var v int64
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "uint":
+	case TypeUint:
 		var v uint
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "uint8":
+	case TypeUint8:
 		var v uint8
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "uint16":
+	case TypeUint16:
 		var v uint16
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "uint32":
+	case TypeUint32:
 		var v uint32
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "uint64":
+	case TypeUint64:
 		var v uint64
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "float32":
+	case TypeFloat32:
 		var v float32
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
 		}
 		return v, nil
-	case "float64":
+	case TypeFloat64:
 		var v float64
 		if _, err := elem.Cast(&v); err != nil {
 			return nil, err
