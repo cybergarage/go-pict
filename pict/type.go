@@ -14,6 +14,11 @@
 
 package pict
 
+import (
+	"fmt"
+	"strings"
+)
+
 // Type represents a PICT type.
 type Type string
 
@@ -35,6 +40,46 @@ const (
 	TypeInt64   Type = "int64"
 	TypeNil     Type = "nil"
 )
+
+// NewTypeFromString returns a new Type from the specified string.
+func NewTypeFromString(typeString string) (Type, error) {
+	switch strings.ToLower(typeString) {
+	case string(TypeString):
+		return TypeString, nil
+	case string(TypeBytes):
+		return TypeBytes, nil
+	case string(TypeBool):
+		return TypeBool, nil
+	case string(TypeFloat32):
+		return TypeFloat32, nil
+	case string(TypeFloat64):
+		return TypeFloat64, nil
+	case string(TypeUint):
+		return TypeUint, nil
+	case string(TypeUint8):
+		return TypeUint8, nil
+	case string(TypeUint16):
+		return TypeUint16, nil
+	case string(TypeUint32):
+		return TypeUint32, nil
+	case string(TypeUint64):
+		return TypeUint64, nil
+	case string(TypeInt):
+		return TypeInt, nil
+	case string(TypeInt8):
+		return TypeInt8, nil
+	case string(TypeInt16):
+		return TypeInt16, nil
+	case string(TypeInt32):
+		return TypeInt32, nil
+	case string(TypeInt64):
+		return TypeInt64, nil
+	case string(TypeNil):
+		return TypeNil, nil
+	default:
+		return "", fmt.Errorf("unsupported type: %s", typeString)
+	}
+}
 
 // String returns the string representation of the type.
 func (t Type) String() string {
