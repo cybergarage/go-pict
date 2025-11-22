@@ -41,8 +41,8 @@ func (elem Elem) Cast(to any) (any, error) {
 	return to, nil
 }
 
-// Cast casts the element to the specified type.
-func (elem Elem) CastType(t Type) (any, error) { // nolint: gocognit, gocyclo
+// CastTo casts the element to the specified Type.
+func (elem Elem) CastTo(t Type) (any, error) { // nolint: gocognit, gocyclo
 	switch t {
 	case TypeString:
 		var v string
