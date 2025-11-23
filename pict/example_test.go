@@ -33,7 +33,7 @@ func Example() {
 	}
 
 	for _, params := range parser.Params() {
-		fmt.Printf("%v ", params)
+		fmt.Printf("%v ", params.Name())
 	}
 	fmt.Println()
 

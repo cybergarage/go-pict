@@ -26,6 +26,11 @@ func newParamsWith(strs []string) []Param {
 	return params
 }
 
+// Name returns the name of the parameter.
+func (param Param) Name() string {
+	return string(param)
+}
+
 // Type returns the Type of the parameter.
 func (param Param) Type() Type {
 	return Type(param)
