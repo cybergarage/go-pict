@@ -31,9 +31,10 @@ func (param Param) Name() string {
 	return string(param)
 }
 
-// Type returns the Type of the parameter.
-func (param Param) Type() Type {
-	return Type(param)
+// Type converts the parameter name to a Type.
+// Returns an error if the parameter name is not a valid type string.
+func (param Param) Type() (Type, error) {
+	return NewTypeFromString(string(param))
 }
 
 // String returns the string representation of the parameter.

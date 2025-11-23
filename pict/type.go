@@ -77,7 +77,7 @@ func NewTypeFromString(typeString string) (Type, error) {
 	case string(TypeNil):
 		return TypeNil, nil
 	default:
-		return "", fmt.Errorf("unsupported type: %s", typeString)
+		return "", fmt.Errorf("unsupported type name: %s", typeString)
 	}
 }
 
