@@ -33,7 +33,11 @@ func Example() {
 	}
 
 	for _, params := range parser.Params() {
-		fmt.Printf("%v ", params.Name())
+		paramType, err := params.Type()
+		if err != nil {
+			return
+		}
+		fmt.Printf("%v:%v ", params.Name(), paramType)
 	}
 	fmt.Println()
 
