@@ -24,6 +24,7 @@ type Type string
 
 const (
 	TypeString  Type = "string"
+	TypeByte    Type = "byte"
 	TypeBytes   Type = "bytes"
 	TypeBool    Type = "bool"
 	TypeFloat32 Type = "float32"
@@ -46,6 +47,8 @@ func NewTypeFromString(typeString string) (Type, error) {
 	switch strings.ToLower(typeString) {
 	case string(TypeString):
 		return TypeString, nil
+	case string(TypeByte):
+		return TypeByte, nil
 	case string(TypeBytes):
 		return TypeBytes, nil
 	case string(TypeBool):

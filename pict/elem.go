@@ -50,6 +50,12 @@ func (elem Elem) CastTo(t Type) (any, error) { // nolint: gocognit, gocyclo
 			return nil, err
 		}
 		return v, nil
+	case TypeByte:
+		var v byte
+		if _, err := elem.Cast(&v); err != nil {
+			return nil, err
+		}
+		return v, nil
 	case TypeBytes:
 		var v []byte
 		if _, err := elem.Cast(&v); err != nil {
