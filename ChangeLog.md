@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0.2 (2025-11-23)
+## v1.0.2 (2025-11-24)
 ### Added
 - Support for `byte` type
 - `Name()`, `Type()`, and `String()` methods to Param/Type
