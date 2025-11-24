@@ -1,7 +1,12 @@
 # Changelog
 
 # v1.0.2 (2025-11-23)
-- refactor: replace manual type casting with go-safecast library
+### Added
+- Support for `byte` type
+- `Name()`, `Type()`, and `String()` methods to Param/Type
+### Changed
+- Renamed `CastType()` to `CastTo()` in Elem
+- Improved manual type casting with go-safecast library
 
 # v1.0.1 (2025-09-16)
 - Updated to Go 1.25
