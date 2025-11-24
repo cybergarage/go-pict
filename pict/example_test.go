@@ -32,19 +32,31 @@ func Example() {
 		return
 	}
 
-	for _, params := range parser.Params() {
-		paramType, err := params.Type()
+	params := parser.Params()
+	for i, param := range params {
+		paramType, err := param.Type()
 		if err != nil {
 			return
 		}
-		fmt.Printf("%v:%v ", params.Name(), paramType)
+		if 0 < i {
+			fmt.Print(" ")
+		}
+		fmt.Printf("%v:%v", param.Name(), paramType)
 	}
 	fmt.Println()
 
 	for _, elems := range parser.Cases() {
-		for _, elem := range elems {
-			fmt.Printf("%v ", elem)
+		for i, elem := range elems {
+			if i > 0 {
+				fmt.Print(" ")
+			}
+			fmt.Print(elem)
 		}
 		fmt.Println()
 	}
+
+	// Output:
+	// bool:bool nil:nil float32:float32 float64:float64 string:string bytes:bytes uint:uint uint8:uint8 uint16:uint16 uint32:uint32 uint64:uint64 int:int int8:int8 int16:int16 int32:int32 int64:int64
+	// false nil 1.0 0.0 "a" "abc" 18446744073709551615 0 0 4294967295 0 1 0 -32768 0 9223372036854775807
+	// true nil 0.0 1.0 "ab" "ab" 0 255 65535 0 18446744073709551615 0 1 1 1 9223372036854775807
 }
